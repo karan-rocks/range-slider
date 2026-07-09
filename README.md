@@ -29,3 +29,7 @@ Now, add the class "range-slider" to your input type=range elements:
 Chrome | Edge | Firefox | Opera | Safari
 ------ | ---- | ------- | ----- | -----
 114 | 114 | 125 | 100| 17
+
+
+### [Demo and detailed documentation ↗](https://karan-rocks.github.io/range-slider/)
+
