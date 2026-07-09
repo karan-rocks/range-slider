@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<title>Range Slider with Popover</title>
+	<style>
+		body {
+			margin: 0;
+			background-color: #043643;
+			color: #fff;
+			font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+		}
+
+		:is(h1, h2, h3, h4) {
+			font-weight: 600;
+		}
+
+		:is(h1, h2, h3, h4):first-child {
+			margin-top: 0;
+		}
+
+		p {
+			margin-top: 0;
+		}
+
+		article {
+			padding: 25px 10px;
+		}
+
+		input[type="range"] {
+			font-size: 1em;
+		}
+
+		mark {
+			padding: 1px 3px;
+			font-weight: 600;
+		}
+
+		.wrapper {
+			max-width: 650px;
+			margin: auto;
+			padding: 15px;
+		}
+
+		.title {
+			line-height: 1.2;
+			font-size: 3em;
+			margin-bottom: 15px;
+		}
+
+		.mb-0 {
+			margin-bottom: 0;
+		}
+
+		.block {
+			margin-bottom: 20px;
+			padding: 10px;
+			border: 1px solid #676767;
+			border-radius: 3px;
+			background-color: #052128;
+		}
+
+		.block+ :is(h2, h3) {
+			margin-top: 35px;
+		}
+
+		.text-center {
+			text-align: center;
+		}
+
+		.ca-line {
+			display: flex;
+			align-items: center;
+			text-align: center;
+			font-family: sans-serif;
+			font-weight: normal;
+			margin: 15px auto;
+		}
+
+		.ca-line::before,
+		.ca-line::after {
+			content: "";
+			flex: 1;
+			height: 1px;
+			background: #ccc;
+		}
+
+		.ca-line::before {
+			margin-right: 15px;
+		}
+
+		.ca-line::after {
+			margin-left: 15px;
+		}
+
+		datalist#values {
+			display: flex;
+			justify-content: space-between;
+			color: #ffffff;
+		}
+	</style>
+	<link rel="stylesheet" href="assets/range-slider.css" />
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.30.0/themes/prism.min.css"
+		integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ=="
+		crossorigin="anonymous" referrerpolicy="no-referrer" />
+</head>
+
+<body>
+	<div class="wrapper">
+		<section class="slider">
+			<h1 class="text-center title">Range Slider with Popover</h1>
+			<p class="text-center">convert HTML5 range input field into an interactive slider</p>
+			<p class="text-center">&lt;input type=&quot;range&quot; /&gt;</p>
+			<article class="text-center">
+				<input type="range" class="range-abc" />
+			</article>
+			<article class="text-center">
+				<input type="range" class="range-slider" name="points" min="100" max="500" value="200" step="100"
+					list="values" />
+				<datalist id="values">
+					<option value="100" label="100"></option>
+					<option value="200" label="200"></option>
+					<option value="300" label="300"></option>
+					<option value="400" label="400"></option>
+					<option value="500" label="500"></option>
+				</datalist>
+			</article>
+			<article class="text-center">
+				<input type="range" id="ele-id" />
+				<h4 id="ele-id-value"></h4>
+			</article>
+		</section>
+
+		<section class="docs">
+			<h2>Basic usage:</h2>
+			<div class="block">
+				<h3 class="mb-0">1. Include the CSS file.</h3>
+				<p>or copy and paste the CSS code from this file within your project.</p>
+				<pre><code class="language-html">&lt;link href=&quot;dist/range-slider.min.css&quot; rel=&quot;stylesheet&quot; /&gt;</code></pre>
+
+				<h3 class="mb-0">2. Auto-Initialize (optional).</h3>
+				<p>add this code to auto-initialize the range slider for
+					all the input type=range elements. and then no need to initialize the slider manually by adding the
+					<code>range-slider</code> class or calling the <code>rangeSlider()</code> function.</p>
+				<pre><code class="language-html">&lt;script&gt;window.rangeSliderAutoInit = true;&lt;/script&gt;</code></pre>
+
+				<h3 class="mb-0">3. Include the JS file.</h3>
+				<pre><code class="language-html">&lt;script src=&quot;dist/range-slider.min.js&quot;&gt;&lt;/script&gt;</code></pre>
+			</div>
+
+			<h2 class="mb-0">Initialize the range slider:</h2>
+			<p>If auto-initialization code is not being used, use HTML or JavaScript to initialize it.</p>
+			<div class="block">
+				<h3 class="mb-0">via HTML</h3>
+				<p>add the class <code><mark>range-slider</mark></code> to your input type=range element.</p>
+				<pre><code class="language-html">&lt;input type=&quot;range&quot; class=&quot;range-slider&quot; /&gt;</code></pre>
+			</div>
+			<div class="block">
+				<h3 class="mb-0">via JavaScript</h3>
+				<p>call the <code><mark>rangeSlider()</mark></code> function with a selector for your input type=range
+					element.</p>
+				<pre><code class="language-javascript">rangeSlider('.range-custom-class');
+// 'range-custom-class' is the class of the input type=range element. 
+// You can also use an ID or any other selectors.</code></pre>
+				<small>HTML tag example:</small>
+				<pre><code class="language-html">&lt;input type=&quot;range&quot; class=&quot;range-custom-class&quot; /&gt;</code></pre>
+
+				<h4 class="ca-line">or</h4>
+				<p>can use <code><mark>input[type="range"]</mark></code> selector for all the input type=range elements.
+				</p>
+				<pre><code class="language-javascript">rangeSlider('input[type="range"]');</code></pre>
+			</div>
+
+			<h2>Advanced Usage:</h2>
+			<div class="block">
+				<h3>Hide Popover</h3>
+				<p>To hide the popover, add class <code><mark>range-slider-no-popover</mark></code> to your input
+					type=range element.</p>
+				<pre><code class="language-html">&lt;input type=&quot;range&quot; class=&quot;range-slider-no-popover range-custom-class&quot; /&gt;</code></pre>
+				<h3 class="mb-0">via JavaScript</h3>
+				<pre><code class="language-javascript">rangeSlider('input#custom-id', { popover: false });</code></pre>
+			</div>
+
+			<div class="block">
+				<h3>Callback</h3>
+				<p>To use a callback function, pass it as the third argument to the
+					<code><mark>rangeSlider()</mark></code> function.
+				</p>
+				<pre><code class="language-javascript">rangeSlider('input#custom-id', {}, (value) => {
+// Handle the value change
+document.getElementById('ele-id-value').textContent = `Current Value: ${value}`;
+});</code></pre>
+			</div>
+
+
+			<div class="block">
+				<h3>Change Slider color</h3>
+				<p>To change the color, copy and paste the CSS below in your project and modify the CSS variables:</p>
+				<pre><code class="language-css">:root input.range-slider[type="range"],
+:root .range-slider-popover {
+    --accent-color: #1f9f95;
+}
+:root input.range-slider[type="range"] {
+    --slider-track-color: lightgray;
+}</code></pre>
+			</div>
+		</section>
+	</div>
+	<script src="assets/range-slider.js"></script>
+
+	<script>
+		rangeSlider('input#ele-id', { popover: false }, (value) => {
+			document.getElementById('ele-id-value').textContent = `Current Value: ${value}`;
+		});
+		rangeSlider('.range-abc');
+	</script>
+
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.30.0/components/prism-core.min.js"
+		integrity="sha512-Uw06iFFf9hwoN77+kPl/1DZL66tKsvZg6EWm7n6QxInyptVuycfrO52hATXDRozk7KWeXnrSueiglILct8IkkA=="
+		crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.30.0/plugins/autoloader/prism-autoloader.min.js"
+		integrity="sha512-SkmBfuA2hqjzEVpmnMt/LINrjop3GKWqsuLSSB3e7iBmYK7JuWw4ldmmxwD9mdm2IRTTi0OxSAfEGvgEi0i2Kw=="
+		crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+</body>
+
+</html>
